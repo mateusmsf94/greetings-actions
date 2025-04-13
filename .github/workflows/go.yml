@@ -49,6 +49,15 @@ jobs:
       - name: List files
         run: ls -la build/libs
     
+      - name: Debug Token
+        run: |
+          echo "Token length: ${#DEV_TOKEN}"
+          if [ -z "${{ secrets.DEV_TOKEN }}" ]; then
+            echo "DEV_TOKEN is empty"
+          else
+            echo "DEV_TOKEN is set"
+          fi
+    
       - name: release to dev
         uses: softprops/action-gh-release@v0.1.15
         with: 
