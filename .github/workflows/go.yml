@@ -26,7 +26,7 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: archive.zip
-        path: build/libs
+        path: build/libs/*.jar
            
         
   deploy-dev:
@@ -53,7 +53,7 @@ jobs:
           prerelease: true
           draft: true
           name: dev
-          files: greetings-deploy.jar           
+          files: build/libs/*.jar
             
   deploy-prod:
   
@@ -78,4 +78,4 @@ jobs:
           token: ${{ secrets.PROD_TOKEN }}
           generate_release_notes: true
           name: Production
-          files: greetings-deploy.jar
+          files: build/libs/*.jar
