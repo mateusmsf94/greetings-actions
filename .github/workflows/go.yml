@@ -35,6 +35,8 @@ jobs:
     if: github.ref == 'refs/heads/dev'
       
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     environment: 
       name: dev
       url: https://github.com/${{ github.repository }}/releases/tag/v${{ vars.DEV_VERSION }}    
@@ -61,7 +63,7 @@ jobs:
       - name: release to dev
         uses: softprops/action-gh-release@v0.1.15
         with: 
-          tag_name: v${{ vars.DEV_VERSION }}
+          tag_name: v${{ secrets.DEV_VERSION }}
           token: ${{ secrets.DEV_TOKEN }}
           prerelease: true
           draft: true
@@ -74,6 +76,8 @@ jobs:
     if: github.ref == 'refs/heads/main' 
     
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     environment: 
       name: production
       url: https://github.com/${{ github.repository }}/releases/tag/v${{ vars.PROD_VERSION }}
