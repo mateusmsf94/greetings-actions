@@ -25,7 +25,7 @@ jobs:
     - name: Upload Artifact
       uses: actions/upload-artifact@v4
       with:
-        name: archive.zip
+        name: jar-files
         path: build/libs/*.jar
            
         
@@ -43,7 +43,11 @@ jobs:
       - name: Download candidate artifacts
         uses: actions/download-artifact@v4       
         with:
-          name: archive.zip 
+          name: jar-files
+          path: build/libs
+    
+      - name: List files
+        run: ls -la build/libs
     
       - name: release to dev
         uses: softprops/action-gh-release@v0.1.15
@@ -69,7 +73,11 @@ jobs:
       - name: Download candidate artifacts
         uses: actions/download-artifact@v4       
         with:
-          name: archive.zip    
+          name: jar-files
+          path: build/libs
+    
+      - name: List files
+        run: ls -la build/libs
         
       - name: GH Release
         uses: softprops/action-gh-release@v0.1.15
